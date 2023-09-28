@@ -1,0 +1,119 @@
+<!-- <div mat-dialog-title>Employee Form</div> -->
+
+<div class="container content">
+  <form #employeeForm="ngForm" (ngSubmit)="onSubmit()">
+    <div class="row my-2" justify-content-around>
+      <div class="col-sm-12 col-md-6 col-xs-6">
+        <label class="col-form-label">First Name</label>
+        <input class="form-control" type="text" name="firstName" [(ngModel)]="employeeObj.firstName" #firstName="ngModel"
+          placeholder="Eg. Akshit " required>
+      </div>
+      <div class="col-sm-12 col-md-6 col-xs-6">
+        <label class="col-form-label">Last Name</label>
+        <input class="form-control" type="text" name="lastName" [(ngModel)]="employeeObj.lastName" #lastName="ngModel"
+          placeholder="Eg. saini" required>
+      </div>
+    </div>
+
+    <div class="row my-2" justify-content-around>
+      <div class="col-sm-12 col-md-6 col-xs-6">
+        <label class="col-form-label">Email</label>
+        <input class="form-control" type="text" name="email" [(ngModel)]="employeeObj.email" #email="ngModel"
+          placeholder="Eg. Akshit " required>
+      </div>
+      <div class="col-sm-12 col-md-6 col-xs-6">
+        <label class="col-form-label">Profile Image</label>
+        <input class="form-control" type="file" name="img" (change)="onSelectImg($event)">
+      </div>
+    </div>
+
+
+    <div class="row my-2" justify-content-around>
+      <!-- <div class="col-sm-12 col-md-12 col-xs-12">
+        <mat-radio-group aria-label="Select an option">
+          <mat-radio-button value="male">Male</mat-radio-button>
+          <mat-radio-button value="female">Female</mat-radio-button>
+          <mat-radio-button value="other">Other</mat-radio-button>
+        </mat-radio-group>         -->
+      <div class="col-sm-12 col-md-12 col-xs-12">
+        <div class="form-check form-check-inline">
+          <h2>Gender</h2>
+          <input class="form-check-input" type="radio" name="gender" [(ngModel)]="employeeObj.gender" #gender="ngModel" value="male">
+          <label class="form-check-label" for="male">Male</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="gender" [(ngModel)]="employeeObj.gender" #gender="ngModel" value="female">
+          <label class="form-check-label" for="female">Female</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="gender" [(ngModel)]="employeeObj.gender" #gender="ngModel" value="other">
+          <label class="form-check-label" for="other">Other</label>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="row my-2" justify-content-around>
+      <div class="col-sm-6 col-md-6 col-xs-6">
+        <mat-form-field>
+          <mat-label>Qualification</mat-label>
+          <mat-select name="qualification" [(ngModel)]="employeeObj.qualification" #qualification="ngModel">
+            <mat-option aria-disabled="true" [value]="employeeObj.qualification">{{employeeObj.qualification || "choose"}}</mat-option>
+            <mat-option *ngFor="let educate of qualificationArray" [value]="educate.value">
+              {{educate.value}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-sm-12 col-md-6 col-xs-6">
+        <label class="col-form-label">Date of Birth</label>
+        <mat-form-field>
+          <mat-label>Choose a date</mat-label>
+          <input matInput type="" name="dob" [(ngModel)]="employeeObj.dob" #dob="ngModel" required [matDatepicker]="picker" [value]="employeeObj.dob|date:'yyyy-MM-dd'">
+
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>        
+        <!-- <label class="col-form-label">Date of Birth</label>
+        <input class="form-control" type="date" name="dob" [(ngModel)]="employeeObj.dob" #dob="ngModel" required> -->
+      </div>
+    </div>
+
+    <div class="row my-2" justify-content-around>
+      <div class="col-sm-6 col-md-6 col-xs-6">
+        <label class="col-form-label">Company</label>
+        <input class="form-control" type="text" name="company" [(ngModel)]="employeeObj.company"
+          #company="ngModel" placeholder="Eg. Softer" required>
+      </div>
+      <div class="col-sm-6 col-md-6 col-xs-6">
+        <label class="col-form-label">Id</label>
+        <input class="form-control" type="text" name="id" [(ngModel)]="employeeObj.id"
+          #id="ngModel" placeholder="Eg. Softer" required>
+      </div>
+    </div>
+
+
+    <div class="row my-2" justify-content-around>
+      <div class="col-sm-12 col-md-6 col-xs-6">
+        <label class="col-form-label">Experience</label>
+        <input class="form-control" type="number" name="experience" [(ngModel)]="employeeObj.experience"
+          #experience="ngModel" placeholder="Eg. 3 year" required>
+      </div>
+      <div class="col-sm-12 col-md-6 col-xs-6">
+        <label class="col-form-label">Package</label>
+        <input class="form-control" type="number" name="package" [(ngModel)]="employeeObj.package" #package="ngModel"
+          placeholder="Eg. 3.5LPA" required>
+      </div>
+    </div>
+   
+    <div class="row my-5" justify-content-around>
+      <div class="col-sm-6 offset-md-3 col-md-6 col-xs-6 ">
+        <!-- <button class="btn btn-danger btn-lg" (click)="previousPage()">Back</button> -->
+        <button mat-button mat-dialog-close>Cancel</button>
+        <button *ngIf="employeeObj._id == undefined" type="submit" class="btn btn-primary btn-lg">Save</button>
+        <button *ngIf="employeeObj._id != undefined" type="submit" class="btn btn-primary btn-lg">Update</button>
+      </div>
+    </div>
+
+  </form>
+</div>
