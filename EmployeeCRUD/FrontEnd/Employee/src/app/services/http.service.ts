@@ -25,6 +25,8 @@ export class HttpService {
     return this.httpClient.get(this.url + urlApi + "/" + id);
    }
   postRequest(form: any, urlApi: string): any {
+    console.log(form,"======post in service");
+    
     //console.log("----file name is: ", form.get('img'));
     return this.httpClient.post(this.url + urlApi, form);
   }

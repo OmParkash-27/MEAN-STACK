@@ -1,0 +1,39 @@
+
+<div class="container-fluid">
+    <mat-card>
+        <mat-card-header class="justify-content-between">
+            <mat-card-title class="col-lg-8" style="min-width: 100%;">Admin Dashboard</mat-card-title>
+            <div class="col-md-4 offset-md-2"></div>
+            <div class="col-lg-2 align-self-center">
+                <button style="margin: 30px;" type="button" class="btn btn-warning" (click)="logout()">Log Out</button>
+            </div>
+        </mat-card-header>
+        <div class="row justify-content-around">
+            <div class="col-lg-6">
+                <div class="headerChart">
+                <p>Patients Graph</p>
+                </div>
+                <!-- <app-bar-chart></app-bar-chart> -->
+                <canvas baseChart
+                [datasets]="barChartData"
+                [labels]="barChartLabels"
+                [options]="barChartOptions"
+                [legend]="barChartLegend"
+                chartType="bar">
+        </canvas>
+            </div>
+            <div class="col-lg-6">
+                <app-adr-list></app-adr-list>
+            </div>
+
+        </div>
+        <!-- <div class="row justify-content-around">
+            <div class="col-lg-6">
+                <app-adr-list></app-adr-list>
+            </div>
+            <div class="col-lg-6">
+                <app-adr-list></app-adr-list>
+            </div>
+        </div> -->
+    </mat-card>
+</div>

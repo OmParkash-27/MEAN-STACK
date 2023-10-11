@@ -42,7 +42,9 @@
                 <td  class="px-4">
                   <i role="button" style="color: red;" (click)="deleteEmployee(item['_id'])" class="fa fa-trash" title="delete"></i>
                   <!-- <i role="button" style="display: inline-block; color: blue; margin-left: 20px;" (click)="openAddEditPage(item['_id'])" class="fa fa-edit" title="delete"></i> -->
-                  <i role="button" style="display: inline-block; color: blue; margin-left: 20px;" (click)="openEditModal(item['_id'])" class="fa fa-edit" title="delete"></i>
+                  <i role="button" style="display: inline-block; color: blue; margin-left: 20px;" (click)="openEditModal(item['_id'])" class="fa fa-edit" title="edit"></i>
+                  <i role="button" style="display: inline-block; color: rgb(210, 3, 247); margin-left: 20px;" (click)="openDocModal(item['_id'])" class="fa fa-plus" title="Add documents"></i>
+                 
                 </td>
               </tr>
               
@@ -52,4 +54,6 @@
         </mat-card-content>
       </mat-card>
     </div>
+    
   </div>
+

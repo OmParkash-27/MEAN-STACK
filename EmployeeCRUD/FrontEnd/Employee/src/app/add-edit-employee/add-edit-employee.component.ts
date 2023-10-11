@@ -1,8 +1,9 @@
-import { Component, Inject } from '@angular/core';
+import { Component, EventEmitter, Inject, Output } from '@angular/core';
 import { HttpService } from '../services/http.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import { EmployeeListComponent } from '../employee-list/employee-list.component';
 
 @Component({
   selector: 'app-add-edit-employee',
@@ -10,15 +11,16 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
   styleUrls: ['./add-edit-employee.component.css']
 })
 export class AddEditEmployeeComponent {
-  
+
   qualificationArray: any = [{'value':'10th'},  {'value':'12th'}, {'value':'graduate'}, {'value':'diploma'}, {'value':'PG'},{'value':'Phd'}];
   selectedOption: string='';
   employeeObj: any={};
+  diaLogClose: any;
   formData = new FormData;
 
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: {isEdditing: boolean, employeId: string} ,private httpService: HttpService, private router: Router,
-  private activatedRoute: ActivatedRoute, private location: Location) {
+  private activatedRoute: ActivatedRoute, private location: Location, public matDialog: MatDialog) {
       // this.activatedRoute.params.subscribe(params => {
       //   if(params['id'] != undefined) {
       //     // alert(params['id']);
@@ -27,7 +29,6 @@ export class AddEditEmployeeComponent {
       // });
 
       if(this.data.isEdditing == true) {
-        // console.log(this.data);
         this.fetchRecord(this.data.employeId);
       } 
 
@@ -63,33 +64,43 @@ export class AddEditEmployeeComponent {
   saveInDB() {
     this.httpService.postRequest(this.formData, "employeeApi").subscribe( (response: any) => {
       console.log(response);      
-      console.log(response.responseCode);      
+      console.log(response.responseCode);  
     }, (error: any) => {
       console.log(error);
     });
-    // this.router.navigate(['employee-list']); not work
-    this.previousPage();
+    this.matDialog.closeAll();
+    //this.router.navigate(['employee-list']);
+    //this.router.navigate(['employee-list']); not work
+    //this.previousPage();
   }
 
   updateInDB(id: string) {
+    //console.log(id,"--------id");
+    console.log(this.diaLogClose,"-------dialogClose");
+    console.log(this.matDialog,"-------matDialog");
+    
     this.httpService.putRequest(this.formData, "employeeApi", id).subscribe( (response: any) => {
-      console.log(response);      
-      console.log(response.responseCode);      
+      //console.log(response);      
+      console.log(response.responseCode);    
+      
     }, (error: any) => {
       console.log(error);
     });
-     this.router.navigate(['employee-list']);  
+    
+    this.matDialog.closeAll();
+      
+    this.router.navigate(['employee-list']);
     // this.previousPage();
   }
 
-  previousPage(): void {
-    this.location.back();
-  }
+  // previousPage(): void {
+  //   this.location.back();
+  // }
 
   fetchRecord(id: string) {
       this.httpService.getRequestById('employeeApi', id).subscribe( (response: any) => { 
         this.employeeObj = response[0];
-      //  console.log(this.employeeObj);
+        console.log(this.employeeObj.image, "-------");
         // console.log(this.employeeObj._id);
       })
   }

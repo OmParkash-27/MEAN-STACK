@@ -19,8 +19,8 @@ const storage = multer.diskStorage({
 const upload = multer({storage: storage});
 
 router.post('/employeeApi',upload.single('img'), async (req, res) => {
-    console.log(req.body, "-----", req.file);
-    console.log(req.body.firstName, "-----", req.file);
+    // console.log(req.body, "-----", req.file);
+    // console.log(req.body.firstName, "-----", req.file);
     try {
     const data = new employeeDetailsSchema({
         id: req.body.id,

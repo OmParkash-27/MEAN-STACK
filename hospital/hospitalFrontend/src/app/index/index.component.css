@@ -1,0 +1,11 @@
+.carousel-inner {
+    position: relative;
+    height: 580px;
+}
+.carousel-item img {
+    position: absolute;
+    top: auto;
+    bottom: auto;
+    min-height: 100%;
+    
+}

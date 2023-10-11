@@ -15,10 +15,11 @@ import { AddEditEmployeeComponent } from './add-edit-employee/add-edit-employee.
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { TestComponent } from './test/test.component';
 import { EmployeeListComponent } from './employee-list/employee-list.component';
+import { EmployeeDocComponent } from './employee-doc/employee-doc.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { EmployeeListComponent } from './employee-list/employee-list.component';
     AppComponent,
     AddEditEmployeeComponent,
     TestComponent,
-    EmployeeListComponent
+    EmployeeListComponent,
+    EmployeeDocComponent
   ],
   imports: [
     BrowserModule,
@@ -43,6 +45,7 @@ import { EmployeeListComponent } from './employee-list/employee-list.component';
     MatRadioModule,
     MatSelectModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     MatCardModule
     
