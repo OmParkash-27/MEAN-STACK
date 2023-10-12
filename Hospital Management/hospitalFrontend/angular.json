@@ -39,11 +39,15 @@
               "budgets": [
                 {
                   "type": "initial",
+<<<<<<< HEAD
 <<<<<<< HEAD:EmployeeCRUD/FrontEnd/Employee/angular.json
                   "maximumWarning": "1mb",
 =======
                 "maximumWarning": "1mb",
 >>>>>>> 934cc22b2898e3005e9e8d5526f245763d51a906:Hospital Management/hospitalFrontend/angular.json
+=======
+                "maximumWarning": "1mb",
+>>>>>>> 934cc22b2898e3005e9e8d5526f245763d51a906
                   "maximumError": "2mb"
                 },
                 {
