@@ -1,0 +1,47 @@
+<div class="container">
+   
+    <mat-card>
+        <mat-toolbar color="primary">
+            <span>My Application</span>
+          </mat-toolbar>
+        <mat-card-header>
+            <mat-card-title>{{title}} Student
+            </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <form #studentForm="ngForm" (ngSubmit)="onSubmit()">
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <mat-form-field class="full-width">
+                        <mat-label>Name</mat-label>
+                        <input type="text" name="name" matInput [(ngModel)]="studentObj.name" #name="ngModel" required
+                               placeholder="Ex. pat@example.com">
+                      </mat-form-field>
+                     
+                </div>
+                <div class="col-lg-6">
+                    <mat-form-field class="full-width">
+                        <mat-label>Class</mat-label>
+                        <input type="text" name="class" matInput [(ngModel)]="studentObj.class" #class="ngModel" required
+                               placeholder="Ex. pat@example.com">
+                      </mat-form-field>
+                </div>
+                <div class="col-lg-6">
+                    <mat-form-field class="full-width">
+                        <mat-label>Age</mat-label>
+                        <input type="number" name="age" matInput [(ngModel)]="studentObj.age" #age="ngModel" required
+                               placeholder="Ex. pat@example.com">
+                      </mat-form-field>
+                </div>
+                <div class="col-lg-4 input-group">
+                    <label class="input-group-text" for="image">Upload Image</label>
+                    <input type="file" name="image" class="form-control" id="image" (change)="onChange($event)">
+                </div>
+                <div class="col-lg-6">
+                    <button class="btn btn-primary" type="submit">Save</button>
+                </div>
+            </div>
+        </form>
+        </mat-card-content>
+    </mat-card>
+</div>

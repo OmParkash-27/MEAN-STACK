@@ -1,0 +1,35 @@
+<div class="container">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>
+                {{title}} Teacher
+            </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <div class="row">
+                <form #teacherForm="ngForm" (ngSubmit)="onSubmit()">
+                    <div class="col-lg-6">
+                        <mat-label>Name</mat-label>
+                        <input type="text" name="name" matInput [(ngModel)]="teacherObj.name" #name="ngModel" required>
+                        <mat-error *ngIf="name?.hasError('required')">Name is required</mat-error>
+                    </div>
+                    <div class="col-lg-6">
+                        <mat-label>Age</mat-label>
+                        <input type="number" name="age" matInput [(ngModel)]="teacherObj.age" #age="ngModel" required>
+                        <mat-error *ngIf="age?.hasError('required')">Name is required</mat-error>
+                    </div>
+                    <div class="col-lg-6">
+                        <mat-form-field>
+                        <mat-label>Class</mat-label>
+                        <mat-select name="class" [(ngModel)]="teacherObj.class" #class="ngModel" multiple>
+                            <mat-option value="">Choose</mat-option>
+                            <mat-option *ngFor="let c of classes" [value]="c.name">{{c.name}}</mat-option>
+                        </mat-select>
+                        </mat-form-field>
+                    </div>
+                    
+                </form>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>
